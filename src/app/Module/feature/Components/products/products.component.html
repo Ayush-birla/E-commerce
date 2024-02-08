@@ -1,0 +1,105 @@
+<div class="">
+  <main class="px-4 sm:px-6 lg:px-40 pb-10">
+    <div class="flex items-baseline justify-between border-gray-200 pb-6 pt-24">
+      <h1 class="text-4xl font-bold text-white">Products</h1>
+      <div class="flex items-center">
+        <div>
+          <button
+            mat-button
+            [matMenuTriggerFor]="sortMenu"
+            style="color: white"
+            class="text-4xl"
+          >
+            Sort
+          </button>
+
+          <mat-menu #sortMenu="matMenu">
+            <button mat-menu-item>
+              <span>Price: high-low</span>
+            </button>
+            <button mat-menu-item>
+              <span>Price: low-high</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <section class="pt-6">
+      <div class="grid grid-cols-1 gap-8 gap-y-10 lg:grid-cols-4">
+        <div>
+          <div class="flex items-center justify-between">
+            <p class="text-lg">Filters</p>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+          <form action="" class="hidden lg:block">
+            <div *ngFor="let item of filterData; let last = last">
+              <div class="py-6">
+                <span class="font-medium">{{ item.name }}</span>
+                <div class="pt-6" id="filter-section-0">
+                  <div class="scroll-py-4">
+                    <div *ngFor="let option of item.options">
+                      <div class="flex items-center text-white">
+                        <mat-checkbox
+                          color="primary"
+                          id="'filter - '+option.value"
+                          (click)="
+                            handleMultipleSelectFilter(option.value, item.id)
+                          "
+                        >
+                          <span class="text-sm text-gray-500">
+                            {{ option.label }}</span
+                          >
+                        </mat-checkbox>
+                        <!-- {{option.value}} -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-divider *ngIf="!last"></mat-divider>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div *ngFor="let item of singleFilterData; let last = last">
+              <div class="py-6">
+                <span class="font-medium">{{ item.name }}</span>
+                <div class="pt-6" id="filter-section-0">
+                  <div class="scroll-py-4">
+                    <div *ngFor="let option of item.options">
+                      <div class="flex items-center text-white">
+                        <mat-radio-button
+                          color="primary"
+                          id="'filter - '+option.value"
+                          (click)="
+                            handleSingleSelectedFilter(option.value, item.id)
+                          "
+                        >
+                          <span class="text-sm text-gray-500">
+                            {{ option.label }}</span
+                          >
+                        </mat-radio-button>
+                        <!-- {{option.value}} -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-divider *ngIf="!last"></mat-divider>
+            </div>
+          </form>
+        </div>
+
+        <div class="lg:col-span-3">
+          <div class="flex flex-wrap justify-evenly">
+            <ng-container *ngFor="let item of menPants">
+              <app-product-card [product]="item"> </app-product-card>
+            </ng-container>
+          </div>
+          Products
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

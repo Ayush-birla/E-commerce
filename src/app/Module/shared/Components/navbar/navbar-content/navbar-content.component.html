@@ -1,0 +1,37 @@
+<div class="w-full">
+  <div class="bg-stone-900 text-white w-full h-1/2 shadow-lg p-6">
+    <div class="flex justify-around mt-7">
+      <div
+        class="flex flex-col"
+        *ngFor="let item of category[selectedSection].sections"
+      >
+        <h1 class="text-center">{{ item.name }}</h1>
+        <button
+          mat-button
+          *ngFor="let section of item.items"
+          style="color: white"
+        >
+          {{ section.name }}
+        </button>
+      </div>
+      <div class="hidden lg:block">
+        <div class="mb-5">
+          <img
+            class="w-[19rem] h-[23rem] object-cover object-left-top"
+            src="https://rukminim2.flixcart.com/image/612/612/xif0q/kurta/m/n/3/m-solid-004-tallwalker-original-imagkc3uzrgfh2uw.jpeg?q=70"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="hidden lg:block">
+        <div class="mb-5">
+          <img
+            class="w-[19rem] h-[23rem] object-cover object-left-top"
+            src="https://rukminim2.flixcart.com/image/612/612/xif0q/lehenga-choli/b/k/f/free-full-sleeve-lehenga-lehenga-for-women-lehenga-choli-net-original-imaggcvr8nhqehzf.jpeg?q=70"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

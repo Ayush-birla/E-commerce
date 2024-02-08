@@ -1,0 +1,23 @@
+.image-slider {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Adjust the maximum width as needed */
+    margin: 0 auto;
+  
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+  
+    .slide {
+      width: 100%;
+      flex: 0 0 auto;
+  
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  

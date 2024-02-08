@@ -1,0 +1,32 @@
+
+.carousel{
+    width: 100%;
+    // max-width: 1200px;// Adjust the maximum width as needed
+    margin: 0 auto;
+    overflow: hidden;
+    transition: transform 0.6 ease-in-out;
+    display: flex;
+    height: auto;
+}
+.carousel-item{
+    flex: 0 0 auto;
+    width: 100%;
+}
+.carousel-item img{
+    width: 100%;
+    height: auto;
+}
+/* 
+.carousel {
+    width: 100%;
+    max-width: 600px; Adjust the maximum width as needed
+    margin: 0 auto;
+    overflow: hidden;
+  
+    img {
+      width: 100%;
+      height: auto;
+    }
+  } 
+  */
+  

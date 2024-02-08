@@ -1,0 +1,77 @@
+<div class="fixed top-0 z-50 right-0 left-0 bg-[#5FDACC] text-white">
+  <div class="px-5 lg:px-20 h-16 flex items-center justify-between">
+    <div class="flex items-center">
+      <div class="mr-3">
+        <!-- <img class="w-8 w-12 relative" src="https://e7.pngegg.com/pngimages/996/491/png-clipart-shopify-e-commerce-logo-web-design-design-web-design-logo.png" alt="code with ayu"> -->
+        <mat-icon>store</mat-icon>
+      </div>
+      <div class="">
+        <div class="flex space-x-4">
+          <a routerLink="/" class="text-white text-lg"> Shop with Ayu </a>
+          <div>
+            <button
+              (click)="openNavbarContent('men')"
+              class="open-button"
+              mat-stroked-button
+            >
+              Men
+            </button>
+          </div>
+          <div>
+            <button
+              (click)="openNavbarContent('women')"
+              class="open-button"
+              mat-stroked-button
+            >
+              Women
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center relative">
+      <button mat-icon-button (click)="navigatTo('cart')">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button
+        *ngIf="!userProfile"
+        mat-stroked-button
+        type=""
+        (click)="handleOpenLoginModel()"
+      >
+        login
+      </button>
+      <div class="ml-3 relative flex items-center" *ngIf="userProfile">
+        <div class="flex items-center space-x-5">
+          <span class="font-semibold text-lg">{{
+            userProfile.firstName.toUpperCase()
+          }}</span>
+          <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #profileMenu="matMenu">
+            <button mat-menu-item (click)="navigatTo('account/order')">
+              <mat-icon>list_alt</mat-icon>
+              <span>orders</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>person</mat-icon>
+              <span>Profile</span>
+            </button>
+            <button mat-menu-item (click)="hadleLogout()">
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="isNavbarContentOpen"
+    class="absolute right-0 left-0 modal-container"
+  >
+    <app-navbar-content [selectedSection]="currentSection"></app-navbar-content>
+  </div>
+</div>

@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: Roboto, Helvetica, sans-serif;
+    background-color: #000000;
+    // background-color: white;
+    color: whitesmoke;
+}
+
+.box {
+    // box-shadow: #000000 0px 5px 15px;
+    box-shadow:#5fdacc 0px 5px 15px;
+
+    padding: 15px;
+    // color: #000000;
+    color: whitesmoke;
+    
+}
+
+.hideScrollbar::-webkit-scrollbar {
+    display: none;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

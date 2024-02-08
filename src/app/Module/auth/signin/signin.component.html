@@ -1,0 +1,52 @@
+<div class="container">
+  <form (ngSubmit)="submitForm()" [formGroup]="loginForm">
+    <h1 class="text-gray-500">Shop With AJ</h1>
+
+    <div>
+      <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required email />
+        <mat-error *ngIf="loginForm.controls['email'].hasError('required')"
+          >Email is Required</mat-error
+        >
+        <mat-error *ngIf="loginForm.controls['email'].hasError('email')"
+          >Please enter a valid email address</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" required password />
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')"
+          >Password is Required</mat-error
+        >
+        <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')"
+          >Password should be at least 8 characters long</mat-error
+        >
+      </mat-form-field>
+
+      <button mat-raised-button style="padding: 1.7rem" color="primary">
+        LOGIN
+      </button>
+      <button
+        mat-raised-button
+        style="padding: 1.7rem; margin-left: 4px"
+        color="accent"
+        (click)="changeTemplate()"
+      >
+        REGISTER
+      </button>
+      <!-- <div>
+        <span class="text-gray-500">if you don't have account ?</span>
+        <button
+          mat-button
+          color="accent"
+          (click)="changeTemplate()"
+          style="color: blue"
+        >
+          REGISTER
+        </button>
+      </div> -->
+    </div>
+  </form>
+</div>
