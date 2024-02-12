@@ -10,6 +10,11 @@
           mat-button
           *ngFor="let section of item.items"
           style="color: white"
+          (click)="
+            handleNavigate(
+              '/' + selectedSection + '/' + item.id + '/' + section.id
+            )
+          "
         >
           {{ section.name }}
         </button>

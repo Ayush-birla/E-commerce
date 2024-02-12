@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,33 +19,30 @@ import { authReducer } from './State/Auth/auth.reducer';
 import { userReducer } from './State/User/user.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { productReducer } from './State/Product/product.reducer';
-
-
-
-
+import { orderReducer } from './State/Order/order.reduce';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatButtonModule ,
+    MatButtonModule,
     MatMenuModule,
     FeatureModule,
     SharedModule,
     AdminModule,
     AuthModule,
     HttpClientModule,
-    StoreModule.forRoot({auth: authReducer,user:userReducer,product:productReducer}),
+    StoreModule.forRoot({
+      auth: authReducer,
+      user: userReducer,
+      product: productReducer,
+      order: orderReducer,
+    }),
   ],
-  providers: [
-    provideClientHydration()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

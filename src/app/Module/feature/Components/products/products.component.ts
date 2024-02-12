@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { mensPantsPage1 } from '../../../../../ecommerce-products-data-master/pants/men_page1';
 import { filters, singleFilter } from './FilterData';
+import { log } from 'console';
 
 @Component({
   selector: 'app-products',
@@ -49,6 +50,21 @@ handleMultipleSelectFilter(value: any,sectionId: any) {
     this.filterData=filters;
     this.singleFilterData=singleFilter;
     this.menPants=mensPantsPage1;
+
+    this.activatedRoute.paramMap.subscribe((params)=>{
+      console.log("params ",params);
+      var reqData={
+        category:params.get('levelThree'),
+        colors:[],
+        sizes:[],
+        minPrice:0,
+        maxPrice:100,
+        minDiscount:0,
+        pageNumber:0,
+        pageSize:0,
+      }
+      
+    })
   }
 
   handleSingleSelectedFilter(value:string,sectionId:string)
