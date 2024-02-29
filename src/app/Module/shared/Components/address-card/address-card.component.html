@@ -1,9 +1,12 @@
 <div class="space-y-3">
-    <p class="font-semibold">Code With Ayu</p>
-    <p>Mumbai , thane, new hivam building</p>
+  <p class="font-normal">{{ address.firstName }} {{ address.lastName }}</p>
+  <p>
+    {{ address.city }}, {{ address.streetAddress }}, {{ address.state }},
+    {{ address.zipCode }}
+  </p>
 
-    <div class="space-y-1">
-        <p class="font-semibold">Phone Number</p>
-        <p>+91 8959165490</p>
-    </div>
+  <div class="space-y-1">
+    <p class="font-semibold">Phone Number</p>
+    <p>{{ address.mobile }}</p>
+  </div>
 </div>

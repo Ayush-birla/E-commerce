@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BASE_API_URL } from '../../Config/api';
-import { Store } from '@ngrx/store';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { catchError, map, of } from 'rxjs';
+import { BASE_API_URL } from '../../Config/api';
 import {
   createOrderFailure,
   createOrderSuccess,
@@ -12,8 +12,6 @@ import {
   getOrderHistoryFailure,
   getOrderHistorySuccess,
 } from './order.action';
-import { error } from 'console';
-import { animate } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +32,8 @@ export class OrderServie {
     });
   }
   createOrder(reqData: any) {
-    console.log('create Order :', reqData);
-    const url = `${this.API}/api/orders/`;
+    console.log('create Order data:', reqData);
+    const url = `${this.API}/api/order/`;
 
     return this.http
       .post(url, reqData, { headers: this.headers })
@@ -65,7 +63,7 @@ export class OrderServie {
   }
 
   getOrderById(orderId: any) {
-    const url = `${this.API}/api/orders/${orderId}`;
+    const url = `${this.API}/api/order/${orderId}`;
     return this.http
       .get(url, { headers: this.headers })
       .pipe(

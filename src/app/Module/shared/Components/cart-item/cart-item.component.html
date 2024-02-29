@@ -3,23 +3,32 @@
     <div class="w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]">
       <img
         class="w-full h-full object-cover object-top"
-        src="https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/i/v/x/xxl-br-ad-kt-105-adwyn-peter-original-imagj4zyd2q7t6cg.jpeg?q=70"
+        [src]="items.product.imageUrl"
         alt=""
       />
     </div>
     <div class="ml-5 space-y-1">
-      <p class="font-semibold">Men Solid Blend Straight Shirt</p>
-      <p class="text-gray-500">Size : M, white</p>
-      <p class="text-gray-500 mt-2">Seller : ASH Trendz</p>
+      <p class="font-semibold">{{ items.product.title }}</p>
+      <p class="text-gray-500">
+        Size : {{ items.size }} , {{ items.product.color | uppercase }}
+      </p>
+      <p class="text-gray-500 mt-2">Seller : {{ items.product.brand }}</p>
 
       <div class="flex space-x-2 items-center pt-3">
-        <p class="text-gray-500 line-through">₹1499</p>
-        <p class="font-semibold text-lg">₹199</p>
-        <p class="text-green-600 font-semibold">82% OFF</p>
+        <p class="text-gray-500 line-through">₹{{ items.price }}</p>
+        <p class="font-semibold text-lg">
+          ₹{{ items.product.discountedPrice }}
+        </p>
+        <p class="text-green-600 font-semibold">
+          {{ items.product.discountPresent }}% OFF
+        </p>
       </div>
     </div>
   </div>
-  <div *ngIf="showButton" class="flex items-center lg:space-x-10 py-3 justify-between">
+  <div
+    *ngIf="showButton"
+    class="flex items-center lg:space-x-10 py-3 justify-between"
+  >
     <div class="flex items-center space-x-2">
       <div class="example-button-container">
         <button
@@ -27,17 +36,19 @@
           color="accent"
           style="background-color: grey"
           (click)="updateCartItem(-1)"
-          [disabled]="true"
+          [disabled]="items.quantity == 1"
         >
           <mat-icon>remove</mat-icon>
         </button>
       </div>
-      <span class="pt-1 px-7 border border-gray-800 rounded-sm">1</span>
+      <span class="pt-1 px-7 border border-gray-800 rounded-sm">{{
+        items.quantity
+      }}</span>
       <div class="example-button-container">
         <button
           mat-mini-fab
           color="primary"
-          (click)="updateCartItem(11)"
+          (click)="updateCartItem(1)"
           [disabled]="false"
         >
           <mat-icon>add</mat-icon>

@@ -73,11 +73,13 @@ import { OrderCardComponent } from './Components/order/order-card/order-card.com
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
+    
   ],
   exports:[
     FeatureComponent,
     HomeComponent,
     ProductsComponent,
+    ProductDetailsComponent
 
   ]
 })

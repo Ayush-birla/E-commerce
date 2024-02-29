@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BASE_API_URL } from '../../Config/api';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Router } from 'express';
-import { ActivatedRoute } from '@angular/router';
-import { catchError, map, max, of } from 'rxjs';
-import { error, log } from 'console';
+import { of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators'; // Import map and catchError from 'rxjs/operators', and remove 'of'
+
+import { BASE_API_URL } from '../../Config/api';
 import {
   findProductByCategoryFailure,
   findProductByCategorySuccess,
@@ -31,7 +31,7 @@ export class ProduceService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-//   find product by category
+  //   find product by category
   findProductsByCategory(reqData: any) {
     const {
       colors,
@@ -60,13 +60,15 @@ export class ProduceService {
 
     const headers = this.getHeader();
     return this.http
-      .get(`${BASE_API_URL}/api/products`, { headers, params })
+      .get(`${this.API_BASE_URL}/api/products`, { headers, params })
       .pipe(
         map((data: any) => {
           console.log('product data :', data);
           return findProductByCategorySuccess({ payload: data });
         }),
         catchError((error: any) => {
+          console.error('error', error);
+
           return of(
             findProductByCategoryFailure(
               error.response && error.response.data.message
@@ -79,14 +81,14 @@ export class ProduceService {
       .subscribe((action) => this.store.dispatch(action));
   }
 
-//   find product by id
+  //   find product by id
   findProductsById(productId: any) {
     const headers = this.getHeader();
     return this.http
       .get(`${BASE_API_URL}/api/products/id/${productId}`, { headers })
       .pipe(
         map((data: any) => {
-          console.log('product details :', data);
+          console.log('product details through id:', data);
           return findProductByIdSuccess({ payload: data });
         }),
         catchError((error: any) => {
@@ -101,6 +103,4 @@ export class ProduceService {
       )
       .subscribe((action) => this.store.dispatch(action));
   }
-
-
 }

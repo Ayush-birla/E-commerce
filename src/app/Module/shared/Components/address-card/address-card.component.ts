@@ -8,4 +8,10 @@ import { Component, Input } from '@angular/core';
 export class AddressCardComponent {
   @Input() address:any
 
+  ngOnInit()
+  {
+    console.log('address ',this.address);
+    
+  }
+
 }

@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   findProductByCategoryFailure,
   findProductByCategorySuccess,
+  findProductByIdFailure,
   findProductByIdSuccess,
 } from './product.actions';
 
@@ -20,14 +21,18 @@ export const productReducer = createReducer(
     content: payload.content,
     loading: false,
   })),
-  on(findProductByCategoryFailure, (state, { error }) => ({
-    ...state,
-    error: error,
-    loading: false,
-  })),
+  on(
+    findProductByCategoryFailure,
+    findProductByIdFailure,
+    (state, { error }) => ({
+      ...state,
+      error: error,
+      loading: false,
+    })
+  ),
   on(findProductByIdSuccess, (state, { payload }) => ({
     ...state,
     product: payload,
     loading: false,
-  })),
+  }))
 );

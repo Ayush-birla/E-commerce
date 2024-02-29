@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OrderServie } from '../../../../../State/Order/order.service';
 
 @Component({
   selector: 'app-address-form',
@@ -7,11 +8,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './address-form.component.scss',
 })
 export class AddressFormComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,private orderService:OrderServie) {}
 
   handleSubmit() {
     const formValue=this.myForm.value;
     console.log('form data' , formValue);
+    this.orderService.createOrder(formValue)
     
   }
 

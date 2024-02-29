@@ -5,6 +5,7 @@ import { AuthComponent } from '../../../auth/auth.component';
 import { UserService } from '../../../../State/User/user.service';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../../Models/AppState';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-navbar',
@@ -24,19 +25,23 @@ export class NavbarComponent {
   userProfile: any;
 
   ngOnInit() {
-    if (localStorage.getItem('jwt')) this.userService.getUserProfile();
-    this.store.pipe(select((store) => store.user)).subscribe((user) => {
-      this.userProfile = user.userProfile;
-      if (user.userProfile) {
-        this.dialog.closeAll();
-      }
-      console.log('user ',user);
-      
-    });
+    if (typeof localStorage !== 'undefined') {
+      if (localStorage.getItem('jwt')) this.userService.getUserProfile();
+      this.store.pipe(select((store) => store.user)).subscribe((user) => {
+        this.userProfile = user.userProfile;
+        if (user.userProfile) {
+          this.dialog.closeAll();
+        }
+        console.log('user ', user);
+      });
+    }
   }
 
   // this hadle logout logic
-  hadleLogout(){
+  hadleLogout() {
+    this.router.navigate([""])
+    console.log("logout");
+    
     this.userService.logout();
   }
 
@@ -83,7 +88,4 @@ function button(
   parent: NodeListOf<Element>
 ): void {
   throw new Error('Function not implemented.');
-
-
-  
 }

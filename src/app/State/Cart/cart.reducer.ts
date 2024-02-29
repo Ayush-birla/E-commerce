@@ -47,7 +47,7 @@ export const cartReducer = createReducer(
     })
   ),
 
-  on(CartActions.getCartsuccess, (state, action) => ({
+  on(CartActions.getCartSuccess, (state, action) => ({
     ...state,
     loading: true,
     cartItems: action.payload.cartItems,

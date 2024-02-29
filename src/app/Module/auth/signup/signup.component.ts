@@ -10,17 +10,21 @@ import { AuthService } from '../../../State/Auth/auth.service';
 })
 export class SignupComponent {
   @Input() changeTemplate: any;
-  constructor(private formBuilder: FormBuilder, private store: Store,private authService:AuthService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store,
+    private authService: AuthService
+  ) {}
   loginForm: FormGroup = this.formBuilder.group({
-    firstName:['',[Validators.required,]],
-    lastName:['',[Validators.required,]],
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
   submitForm(): void {
     if (this.loginForm.valid) {
-      this.authService.register(this.loginForm.value)
+      this.authService.register(this.loginForm.value);
       console.log('login req data :', this.loginForm.value);
     }
   }

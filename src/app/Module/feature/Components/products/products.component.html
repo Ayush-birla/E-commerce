@@ -14,10 +14,16 @@
           </button>
 
           <mat-menu #sortMenu="matMenu">
-            <button mat-menu-item>
+            <button
+              mat-menu-item
+              (click)="handleSingleSelectedFilter('price_high', 'sort')"
+            >
               <span>Price: high-low</span>
             </button>
-            <button mat-menu-item>
+            <button
+              mat-menu-item
+              (click)="handleSingleSelectedFilter('price_high', 'sort')"
+            >
               <span>Price: low-high</span>
             </button>
           </mat-menu>
@@ -51,7 +57,6 @@
                             {{ option.label }}</span
                           >
                         </mat-checkbox>
-                        <!-- {{option.value}} -->
                       </div>
                     </div>
                   </div>
@@ -67,20 +72,20 @@
                 <span class="font-medium">{{ item.name }}</span>
                 <div class="pt-6" id="filter-section-0">
                   <div class="scroll-py-4">
-                    <div *ngFor="let option of item.options">
+                    <div *ngFor="let options of item.options">
                       <div class="flex items-center text-white">
                         <mat-radio-button
                           color="primary"
-                          id="'filter - '+option.value"
-                          (click)="
-                            handleSingleSelectedFilter(option.value, item.id)
+                          [name]="'filterGroup_' + item.id"
+                          id="'filter - ' + options.value"
+                          (change)="
+                            handleSingleSelectedFilter(options.value, item.id)
                           "
                         >
                           <span class="text-sm text-gray-500">
-                            {{ option.label }}</span
+                            {{ options.label }}</span
                           >
                         </mat-radio-button>
-                        <!-- {{option.value}} -->
                       </div>
                     </div>
                   </div>
@@ -91,13 +96,13 @@
           </form>
         </div>
 
+        <!-- this is for showing items like - kurta, shirt and so on -->
         <div class="lg:col-span-3">
           <div class="flex flex-wrap justify-evenly">
-            <ng-container *ngFor="let item of menPants">
+            <ng-container *ngFor="let item of products">
               <app-product-card [product]="item"> </app-product-card>
             </ng-container>
           </div>
-          Products
         </div>
       </div>
     </section>
